@@ -1,9 +1,11 @@
-const Favorite = () => {
+import { FC } from "react"
+
+const Favorite:FC = () => {
 
   return (
     <>
 
-      <h2 className="ml-20 text-3xl underline">Favorite</h2>
+      <h2 className="ml-20 text-3xl underline">Ваша корзина</h2>
 
     </>
   )
