@@ -1,20 +1,27 @@
 import { FC, useEffect, useState } from "react";
-import { getSizes, getSize, getProducts, getProduct, getProductColor, Size, Color, Product } from '../utils/api'
+import { useDispatch, useSelector } from 'react-redux';
+import { getSizes, getSize, getProducts, getProduct, getProductColor, Size, Color, Product } from '../utils/api';
+
+import { Link } from "react-router-dom";
+
+
 
 const HomePage: FC = () => {
+
+  const dispatch = useDispatch();
 
   const [allProducts, setAllProducts] = useState ([])
 
   useEffect(() => {
-    //  getSizes().then((sizes: Size) => console.log("Sizes:", sizes));
-    //  getSize(1).then((size: Size) => console.log("Size:", size));
       getProducts()
         .then((products: Product) =>{
           setAllProducts(products)
-          console.log(products)
+          // console.log(products)
         });
-    //  getProduct(1).then((product: Product) => console.log("Product:", product));
-    //  getProductColor(1, 1).then((color: Color) => console.log("Product Color:", color));
+        //getSizes().then((sizes: Size) => console.log("Sizes:", sizes));
+        //getSize(1).then((size: Size) => console.log("Size:", size));
+        //getProduct(1).then((product: Product) => console.log("Product:", product));
+        //getProductColor(1, 1).then((color: Color) => console.log("Product Color:", color));
     }, []);
 
   return (
@@ -24,8 +31,10 @@ const HomePage: FC = () => {
 
       <div className="m-8 flex justify-center min-h-max">
       {allProducts.map((product: Product) => (
-        <div key={product.id}
+        <Link
+          key={product.id}
           className="flex flex-col items-center justify-center m-10 bg-gray-100 cursor-pointer shadow-md hover:shadow-2xl"
+          to={`/product/${product.id}`}
         >
           {product.colors.length > 0 && (
             <div className="min-h-max">
@@ -36,11 +45,10 @@ const HomePage: FC = () => {
               />
             </div>
           )}
-          <h2 className="my-5 mr-5 text-3xl font-bold text-orange-900">{product.name}</h2>
-        </div>
+          <h2 className="my-5 mr-5 xl:text-3xl lg:text-2xl sm:text-xl font-bold text-orange-900">{product.name}</h2>
+        </Link>
       ))}
     </div>
-
     </>
   )
 }
