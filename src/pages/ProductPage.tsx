@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { EventHandler, FC, SyntheticEvent, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSizes, getSize, getProducts, getProduct, getProductColor, Size, Color, Product } from '../utils/api';
 import { openPopup } from "../store/popup.slice";
-import SizeFetcher from "../components/SizesList";
+import SizeList from "../components/SizesList";
 import Popup from "../components/Popup";
 
 const ProductPage: FC = () => {
@@ -30,7 +30,7 @@ const ProductPage: FC = () => {
     fetchData();
   }, []);
 
-  const handleOpenPopup: React.EventHandler<React.SyntheticEvent<HTMLImageElement>> = (event) => {
+  const handleOpenPopup: EventHandler<SyntheticEvent<HTMLImageElement>> = (event) => {
     const target = event.currentTarget;
     const images = target.getAttribute('data-images');
     if (images) {
@@ -43,7 +43,7 @@ const ProductPage: FC = () => {
       <h2 className="ml-20 text-3xl underline">{titlePage}</h2>
       <div className="m-8 flex justify-center min-h-max">
         {allProducts.map((color: Color, colorIndex) => (
-          <div key={color.id} className="flex flex-col items-center m-10 bg-gray-100 shadow-md">
+          <div key={color.id} className="flex flex-col items-center m-10 bg-gray-100 shadow-md rounded">
             <div className="min-h-max">
               <img
                 className="w-80 bg-contain cursor-pointer hover:shadow-2xl"
@@ -62,11 +62,17 @@ const ProductPage: FC = () => {
             <p className="my-2">выберете размер:</p>
             {color.sizes.length > 0 ? (
               <div className="flex flex-col items-center">
-                <SizeFetcher sizes={sizeLabels[colorIndex]} />
+                <SizeList sizes={sizeLabels[colorIndex]} />
+                <button
+                  className="mb-2 bg-slate-400 rounded-full"
+                >
+                  <p className="py-2 px-3 font-bold xl:text-base lg:text-base sm:text-sm text-black">Добавить в корзину</p>
+                </button>
               </div>
             ) : (
               <p className="my-2 font-bold xl:text-base lg:text-base sm:text-sm">нет в наличии</p>
             )}
+
           </div>
         ))}
       </div>

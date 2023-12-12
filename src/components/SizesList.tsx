@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import { getSize } from '../utils/api';
 
-interface SizeFetcherProps {
+interface SizeListProps {
   sizes: number[];
 }
 
-const SizeFetcher: FC<SizeFetcherProps> = ({ sizes }) => {
+const SizeList: FC<SizeListProps> = ({ sizes }) => {
   const [sizeLabels, setSizeLabels] = useState<string[]>([]);
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const SizeFetcher: FC<SizeFetcherProps> = ({ sizes }) => {
   );
 };
 
-export default SizeFetcher;
+export default SizeList;
