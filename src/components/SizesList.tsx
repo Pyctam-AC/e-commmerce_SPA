@@ -1,12 +1,24 @@
 import { FC, useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import { getSize } from '../utils/api';
+import { isSelect, notSelect } from "../store/sizeSelect.slice";
+
+
 
 interface SizeListProps {
+
   sizes: number[];
+
+  colorId: string;
 }
 
-const SizeList: FC<SizeListProps> = ({ sizes }) => {
+const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
+
+  const dispatch = useDispatch();
+
   const [sizeLabels, setSizeLabels] = useState<string[]>([]);
+
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSizes = async () => {
@@ -22,10 +34,27 @@ const SizeList: FC<SizeListProps> = ({ sizes }) => {
     fetchSizes();
   }, [sizes]);
 
+  const handleAddToCart = (sizeLabel: string) => {
+    if (selectedSize === sizeLabel) {
+      setSelectedSize(null);
+      dispatch(notSelect(colorId));
+    } else {
+      setSelectedSize(sizeLabel);
+      dispatch(isSelect({ cardId: colorId.toString(), sizeName: sizeLabel }));
+
+    }
+  };
+
   return (
     <div className="flex">
       {sizeLabels.map((size, sizeIndex) => (
-        <p key={sizeIndex} className="m-3 p-0 cursor-pointer font-bold xl:text-base lg:text-base sm:text-sm">
+        <p
+          key={sizeIndex}
+          className={`m-3 p-0 cursor-pointer font-bold ${
+            selectedSize === size ? 'underline' : ''
+          }`}
+          onClick={() => handleAddToCart(size)}
+        >
           {size}
         </p>
       ))}

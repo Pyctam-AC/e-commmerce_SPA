@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { getSizes, getSize, getProducts, getProduct, getProductColor, Size, Color, Product } from '../utils/api';
+import { useDispatch } from 'react-redux';
+import { getProducts, Product } from '../utils/api';
 
 import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation";
 
 
 
@@ -26,18 +27,18 @@ const HomePage: FC = () => {
 
   return (
     <>
-
+      <Navigation />
       <h2 className="ml-20 text-3xl underline">Все товары</h2>
 
-      <div className="m-8 flex justify-center min-h-max">
+      <div className="m-8 flex flex-wrap justify-center ">
       {allProducts.map((product: Product) => (
         <Link
           key={product.id}
-          className="flex flex-col items-center justify-center m-10 bg-gray-100 cursor-pointer shadow-md hover:shadow-2xl"
+          className="m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 cursor-pointer shadow-md hover:shadow-2xl"
           to={`/product/${product.id}`}
         >
           {product.colors.length > 0 && (
-            <div className="min-h-max">
+            <div className="">
               <img
                 className='w-80 bg-contain '
                 src={product.colors[0].images[0]}

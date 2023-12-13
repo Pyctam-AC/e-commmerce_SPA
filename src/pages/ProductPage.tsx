@@ -1,10 +1,13 @@
 import { EventHandler, FC, SyntheticEvent, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getSizes, getSize, getProducts, getProduct, getProductColor, Size, Color, Product } from '../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProduct, Color, Product } from '../utils/api';
 import { openPopup } from "../store/popup.slice";
 import SizeList from "../components/SizesList";
 import Popup from "../components/Popup";
+import { RootState } from "../store";
+import { addToCart } from '../store/cart.slice';
+import Navigation from "../components/Navigation";
 
 const ProductPage: FC = () => {
   const dispatch = useDispatch();
@@ -12,6 +15,17 @@ const ProductPage: FC = () => {
   const [allProducts, setAllProducts] = useState<Color[]>([]);
   const [titlePage, setTitlePage] = useState('');
   const [sizeLabels, setSizeLabels] = useState<number[][]>([]);
+
+  const [countFavorite, setCountFavorite] = useState (0)
+
+  const { items } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    sessionStorage.setItem('cartItems', JSON.stringify(items));
+
+  }, [items]);
+
+  const {selectedSizes} = useSelector ((state: RootState) => state.sizeSelect)
 
   const fetchData = async () => {
     const product: Product = await getProduct(id);
@@ -38,13 +52,19 @@ const ProductPage: FC = () => {
     }
   };
 
+  const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: number, selectedSize: string) => {
+    dispatch(addToCart({ colorName, sizeName: selectedSize, photo, price, nameProduct }));
+
+  };
+
   return (
     <>
+      <Navigation />
       <h2 className="ml-20 text-3xl underline">{titlePage}</h2>
-      <div className="m-8 flex justify-center min-h-max">
+      <div className="m-8 flex flex-wrap justify-center">
         {allProducts.map((color: Color, colorIndex) => (
-          <div key={color.id} className="flex flex-col items-center m-10 bg-gray-100 shadow-md rounded">
-            <div className="min-h-max">
+          <div key={color.id} className="m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 shadow-md rounded">
+            <div className="">
               <img
                 className="w-80 bg-contain cursor-pointer hover:shadow-2xl"
                 src={color.images[0]}
@@ -62,9 +82,16 @@ const ProductPage: FC = () => {
             <p className="my-2">выберете размер:</p>
             {color.sizes.length > 0 ? (
               <div className="flex flex-col items-center">
-                <SizeList sizes={sizeLabels[colorIndex]} />
+                <SizeList sizes={sizeLabels[colorIndex]} colorId={color.id} />
                 <button
-                  className="mb-2 bg-slate-400 rounded-full"
+                  className={`mb-2 ${selectedSizes[color.id] ? 'bg-slate-400' : 'bg-gray-300'} rounded-full`}
+                  disabled={!selectedSizes[color.id]}
+                  onClick={() => {
+                    const sizeValue = selectedSizes[color.id];
+                    if (sizeValue !== null) {
+                      handleAddFavorite(titlePage, color.name, color.images[0], color.price, sizeValue);
+                    }
+                  }}
                 >
                   <p className="py-2 px-3 font-bold xl:text-base lg:text-base sm:text-sm text-black">Добавить в корзину</p>
                 </button>
