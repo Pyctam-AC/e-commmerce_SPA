@@ -8,6 +8,7 @@ import SizeList from "../components/SizesList";
 import Popup from "../components/Popup";
 import { RootState } from "../store";
 import { addToCart, addCount } from '../store/cart.slice';
+import { notSelect } from "../store/sizeSelect.slice";
 import Navigation from "../components/Navigation";
 
 const ProductPage: FC = () => {
@@ -19,12 +20,14 @@ const ProductPage: FC = () => {
 
   const { items } = useSelector((state: RootState) => state.cart);
 
+  const {selectedSizes} = useSelector ((state: RootState) => state.sizeSelect);
+
   useEffect(() => {
     sessionStorage.setItem('cartItems', JSON.stringify(items));
     dispatch(addCount(items.length))
   }, [items]);
 
-  const {selectedSizes} = useSelector ((state: RootState) => state.sizeSelect)
+
 
   const fetchData = async () => {
     if(id !== undefined) {
@@ -53,15 +56,15 @@ const ProductPage: FC = () => {
     }
   };
 
-  const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: string, selectedSize: string) => {
+  const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: string, selectedSize: string, colorId: number) => {
     dispatch(addToCart({ colorName, sizeName: selectedSize, photo, price, nameProduct }));
-
+    dispatch(notSelect(colorId.toString()));
   };
 
   return (
     <>
       <Navigation />
-      <h2 className="ml-20 text-3xl underline">{titlePage}</h2>
+      <h2 className="ml-2 md:ml-20 text-1xl text-2xl md:text-3xl underline">{titlePage}</h2>
       <div className="m-8 flex flex-wrap justify-center">
         {allProducts.map((color: Color, colorIndex) => (
           <div key={color.id} className="m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 shadow-md rounded">
@@ -90,7 +93,7 @@ const ProductPage: FC = () => {
                   onClick={() => {
                     const sizeValue = selectedSizes[color.id];
                     if (sizeValue !== null) {
-                      handleAddFavorite(titlePage, color.name, color.images[0], color.price, sizeValue);
+                      handleAddFavorite(titlePage, color.name, color.images[0], color.price, sizeValue, color.id);
                     }
                   }}
                 >

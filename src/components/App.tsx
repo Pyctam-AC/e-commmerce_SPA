@@ -8,8 +8,7 @@ const App:FC =() => {
 
   return (
     <main className="bg-slate-200 min-h-screen">
-      <h2 className="pt-10 mx-10 text-3xl sm:text-5xl font-bold">E-commerce</h2>
-
+      <h1 className="py-5 mx-2 sm:py-10 sm:mx-20 text-2xl md:text-5xl sm:text-3xl font-bold">E-commerce</h1>
       <Routes>
         <Route path="/e-commmerce_SPA/" element={<HomePage />} />
         <Route path="/e-commmerce_SPA/product/:id" element={<ProductPage />} />
