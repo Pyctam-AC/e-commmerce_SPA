@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "../store/cart.slice";
+import { addCount } from "../store/cart.slice";
 import { RootState } from "../store";
-import { useSelector } from "react-redux";
+
 
 const Navigation:FC = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [favoriteProductsLength, setFavoriteProductsLength] = useState<number>(0);
 
@@ -18,6 +20,7 @@ const Navigation:FC = () => {
     if (cartLength===0) {
       const parsedData = JSON.parse(storedSessionDataString || '[]') as CartItem[];
       setFavoriteProductsLength(parsedData.length);
+      dispatch(addCount(parsedData.length))
     } else {
       setFavoriteProductsLength(cartLength)
     }
@@ -28,7 +31,7 @@ const Navigation:FC = () => {
     <h3 className="font-bold">goods</h3>
     <span className="flex flex-col md:flex-row justify-between items-center">
       <Link className="mr-8 my-2 text-3xl" to='/e-commmerce_SPA/'>Все товары</Link>
-      <Link className="flex mr-2 my-2 text-3xl" to='/favorite'>Корзина&nbsp;<p className="mr-5 text-base font-bold">{favoriteProductsLength}</p></Link>
+      <Link className="flex mr-2 my-2 text-3xl" to='/e-commmerce_SPA/favorite'>Корзина&nbsp;<p className="mr-5 text-base font-bold">{favoriteProductsLength}</p></Link>
 
     </span>
   </nav>

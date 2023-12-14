@@ -7,7 +7,7 @@ import { openPopup } from "../store/popup.slice";
 import SizeList from "../components/SizesList";
 import Popup from "../components/Popup";
 import { RootState } from "../store";
-import { addToCart } from '../store/cart.slice';
+import { addToCart, addCount } from '../store/cart.slice';
 import Navigation from "../components/Navigation";
 
 const ProductPage: FC = () => {
@@ -21,7 +21,7 @@ const ProductPage: FC = () => {
 
   useEffect(() => {
     sessionStorage.setItem('cartItems', JSON.stringify(items));
-
+    dispatch(addCount(items.length))
   }, [items]);
 
   const {selectedSizes} = useSelector ((state: RootState) => state.sizeSelect)

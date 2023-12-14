@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from "../store/cart.slice";
+import { removeFromCart, addCount } from "../store/cart.slice";
 import { CartItem } from "../store/cart.slice";
 import Navigation from "../components/Navigation";
 
@@ -27,6 +27,7 @@ const Favorite:FC = () => {
     setFavoriteProducts((prevProducts) => {
       const newProducts = prevProducts.filter((_, i) => i !== index);
       updateSessionStorage(newProducts);
+      dispatch(addCount(newProducts.length))
       return newProducts;
     });
   };

@@ -12,8 +12,8 @@ const App:FC =() => {
 
       <Routes>
         <Route path="/e-commmerce_SPA/" element={<HomePage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/e-commmerce_SPA/product/:id" element={<ProductPage />} />
+        <Route path="/e-commmerce_SPA/favorite" element={<Favorite />} />
       </Routes>
     </main>
   )

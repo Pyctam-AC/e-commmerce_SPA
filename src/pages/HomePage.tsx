@@ -27,7 +27,7 @@ const HomePage: FC = () => {
         <Link
           key={product.id}
           className="m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 cursor-pointer shadow-md hover:shadow-2xl"
-          to={`/product/${product.id}`}
+          to={`/e-commmerce_SPA/product/${product.id}`}
         >
           {product.colors.length > 0 && (
             <div className="">
