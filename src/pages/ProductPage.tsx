@@ -63,11 +63,11 @@ const ProductPage: FC = () => {
 
   return (
     <>
-      <Navigation />
+      {/* <Navigation /> */}
       <h2 className="ml-2 md:ml-20 text-1xl text-2xl md:text-3xl underline">{titlePage}</h2>
-      <div className="m-8 flex flex-wrap justify-center">
+      <div className="md:m-8 flex flex-wrap justify-center">
         {allProducts.map((color: Color, colorIndex) => (
-          <div key={color.id} className="m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 shadow-md rounded">
+          <div key={color.id} className="m-3 sm:m-10 w-282 flex flex-col items-center box-border rounded-10 overflow-hidden bg-gray-100 shadow-md rounded">
             <div className="">
               <img
                 className="w-80 bg-contain cursor-pointer hover:shadow-2xl"

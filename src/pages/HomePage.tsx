@@ -19,7 +19,7 @@ const HomePage: FC = () => {
 
   return (
     <>
-      <Navigation />
+      {/* <Navigation /> */}
       <h2 className="ml-2 md:ml-20 text-1xl text-2xl md:text-3xl underline">Все товары</h2>
 
       <div className="m-8 flex flex-wrap justify-center ">

@@ -33,7 +33,7 @@ const Favorite:FC = () => {
 
   return (
     <>
-      <Navigation />
+      {/* <Navigation /> */}
       <h2 className="ml-2 md:ml-20 text-1xl  md:text-3xl underline">Ваша корзина</h2>
       <div className="m-8 flex flex-wrap justify-center">
 

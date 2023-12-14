@@ -27,19 +27,25 @@ const Navigation:FC = () => {
   }, [cartLength]);
 
   return (
-  <nav className="fixed z-10 left-1/2 md:left-1/3 w-90 flex flex-col md:flex-row justify-between md:items-center h-{50px} px-5 bg-gray-500 text-white">
-    <h3 className="md:mr-20 font-bold">goods</h3>
-    <span className="flex flex-col md:flex-row justify-between items-center">
-      <Link className="mr-8 my-1 md:my-2 text-1xl md:text-2xl" to='/e-commmerce_SPA/'>Все товары</Link>
-      <Link className="flex md:mr-2 md:my-2 text-1xl md:text-2xl" to='/e-commmerce_SPA/favorite'
-        >Ваша корзина&nbsp;
-          <p className="mr-1 text-base font-bold">
-            {favoriteProductsLength}
-          </p>
-      </Link>
-    </span>
-  </nav>
-  )
+    <nav className="fixed inset-x-0 md:inset-x-auto bottom-2 md:inset-y-auto md:w-1/2 z-10 left-0 md:left-1/3 flex justify-between md:flex-row items-center px-5 bg-gray-500 text-white h-16 opacity-80 md:h-auto md:opacity-100">
+      <h3 className="md:mr-8 font-bold">goods</h3>
+      <span className="flex  md:flex-row justify-between items-center">
+        <Link
+          className="mr-12  text-2xl font-bold"
+          to="/e-commmerce_SPA/"
+        >
+          Все товары
+        </Link>
+        <Link
+          className="flex mr-2 text-1xl md:text-2xl "
+          to="/e-commmerce_SPA/favorite"
+        >
+          <img className="w-10 mr-2" src='../images/images.png' />
+          <p className="mr-2 text-base font-bold">{favoriteProductsLength}</p>
+        </Link>
+      </span>
+    </nav>
+  );
 }
 
 export default Navigation;
