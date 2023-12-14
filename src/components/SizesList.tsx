@@ -6,13 +6,12 @@ import { isSelect, notSelect } from "../store/sizeSelect.slice";
 
 
 interface SizeListProps {
-
   sizes: number[];
-
   colorId: number;
+  resetSelectedSize: boolean;
 }
 
-const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
+const SizeList: FC<SizeListProps> = ({ sizes, colorId, resetSelectedSize}) => {
 
   const dispatch = useDispatch();
 
@@ -34,6 +33,12 @@ const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
     fetchSizes();
   }, [sizes]);
 
+  useEffect(() => {
+    if (resetSelectedSize) {
+      setSelectedSize(null);
+    }
+  }, [resetSelectedSize]);
+
   const handleAddToCart = (sizeLabel: string) => {
     if (selectedSize === sizeLabel) {
       setSelectedSize(null);
@@ -41,7 +46,6 @@ const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
     } else {
       setSelectedSize(sizeLabel);
       dispatch(isSelect({ cardId: colorId.toString(), sizeName: sizeLabel }));
-
     }
   };
 

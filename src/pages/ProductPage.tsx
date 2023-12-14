@@ -55,14 +55,19 @@ const ProductPage: FC = () => {
     }
   };
 
+  const [resetSelectedSizes, setResetSelectedSizes] = useState<boolean>(false);
+
   const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: string, selectedSize: string, colorId: number) => {
     dispatch(addToCart({ colorName, sizeName: selectedSize, photo, price, nameProduct }));
     dispatch(notSelect(colorId.toString()));
+    setResetSelectedSizes(true);
+    setTimeout(() => {
+      setResetSelectedSizes(false);
+    }, 500);
   };
 
   return (
     <>
-      {/* <Navigation /> */}
       <h2 className="ml-2 md:ml-20 text-1xl text-2xl md:text-3xl underline">{titlePage}</h2>
       <div className="md:m-8 flex flex-wrap justify-center">
         {allProducts.map((color: Color, colorIndex) => (
@@ -85,7 +90,7 @@ const ProductPage: FC = () => {
             <p className="my-2">выберете размер:</p>
             {color.sizes.length > 0 ? (
               <div className="flex flex-col items-center">
-                <SizeList sizes={sizeLabels[colorIndex]} colorId={color.id} />
+                <SizeList sizes={sizeLabels[colorIndex]} colorId={color.id} resetSelectedSize={resetSelectedSizes}/>
                 <button
                   className={`mb-2 ${selectedSizes[color.id] ? 'bg-slate-400' : 'bg-gray-300'} rounded-full`}
                   disabled={!selectedSizes[color.id]}

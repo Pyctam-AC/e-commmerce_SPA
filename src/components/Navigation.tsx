@@ -40,7 +40,7 @@ const Navigation:FC = () => {
           className="flex mr-2 text-1xl md:text-2xl "
           to="/e-commmerce_SPA/favorite"
         >
-          <img className="w-10 mr-2" src='../images/images.png' />
+          <img className="w-10 mr-2" src='./images/images.png' />
           <p className="mr-2 text-base font-bold">{favoriteProductsLength}</p>
         </Link>
       </span>
