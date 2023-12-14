@@ -24,13 +24,11 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload);
-      //state.length = state.items.length;
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const indexToRemove = action.payload;
       if (indexToRemove >= 0 && indexToRemove < state.items.length) {
         state.items.splice(indexToRemove, 1);
-        //state.length = state.items.length;
       }
     },
     addCount: (state, action: PayloadAction<number>) => {

@@ -14,7 +14,6 @@ const Favorite:FC = () => {
 
   useEffect(() => {
     const parsedData = JSON.parse(sessionStorage.getItem('cartItems') || '[]') as CartItem[];
-    console.log(parsedData)
     setFavoriteProducts(parsedData);
   }, [])
 
@@ -35,10 +34,10 @@ const Favorite:FC = () => {
   return (
     <>
       <Navigation />
-      <h2 className="ml-20 text-3xl underline">Ваша корзина</h2>
+      <h2 className="ml-2 md:ml-20 text-1xl  md:text-3xl underline">Ваша корзина</h2>
       <div className="m-8 flex flex-wrap justify-center">
 
-          {favoriteProducts.length===0 && <h2 className="mt-3 xl:text-3xl lg:text-2xl sm:text-sm font-bold text-amber-950">
+          {favoriteProducts.length===0 && <h2 className="mt-6 xl:text-3xl lg:text-2xl sm:text-sm font-bold text-amber-950">
                 товаров в корзине нет
               </h2>}
 

@@ -27,7 +27,7 @@ const Popup:FC = () => {
   return (
     <div
     className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 transition-all duration-500 ${
-      isOpen ? 'visible opacity-100' : 'invisible opacity-0'
+      isOpen ? 'visible opacity-100 z-20' : 'invisible opacity-0'
     }`}
 
     >
