@@ -11,7 +11,7 @@ const App:FC =() => {
       <h2 className="pt-10 mx-10 text-3xl sm:text-5xl font-bold">E-commerce</h2>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/e-commmerce_SPA/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/favorite" element={<Favorite />} />
       </Routes>

@@ -28,7 +28,7 @@
 
 ---
 ссылка репозитория на GitHub
-https://github.com/Pyctam-AC/e-commmerce_SPA
+https://pyctam-ac.github.io/e-commmerce_SPA/
 
 ---
 установка всех зависимостей
