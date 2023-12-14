@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
 import { getProducts, Product } from '../utils/api';
 
 import { Link } from "react-router-dom";
@@ -9,20 +8,13 @@ import Navigation from "../components/Navigation";
 
 const HomePage: FC = () => {
 
-  const dispatch = useDispatch();
-
-  const [allProducts, setAllProducts] = useState ([])
+  const [allProducts, setAllProducts] = useState <Product[]>([])
 
   useEffect(() => {
       getProducts()
-        .then((products: Product) =>{
+        .then((products: Product[]) =>{
           setAllProducts(products)
-          // console.log(products)
         });
-        //getSizes().then((sizes: Size) => console.log("Sizes:", sizes));
-        //getSize(1).then((size: Size) => console.log("Size:", size));
-        //getProduct(1).then((product: Product) => console.log("Product:", product));
-        //getProductColor(1, 1).then((color: Color) => console.log("Product Color:", color));
     }, []);
 
   return (

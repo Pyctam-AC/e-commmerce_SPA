@@ -1,6 +1,6 @@
 {
   "homepage": "http://Pyctam-AC.github.io/e-commmerce-spa",
-  "name": "e-commmerce-spa",
+  "name": "e-commerce-spa",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^6.1.0",
     "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,7 +30,6 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
-    "gh-pages": "^6.1.0",
     "postcss": "^8.4.32",
     "sass": "^1.69.5",
     "tailwindcss": "^3.3.6",

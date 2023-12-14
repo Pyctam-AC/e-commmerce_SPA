@@ -16,8 +16,6 @@ const ProductPage: FC = () => {
   const [titlePage, setTitlePage] = useState('');
   const [sizeLabels, setSizeLabels] = useState<number[][]>([]);
 
-  const [countFavorite, setCountFavorite] = useState (0)
-
   const { items } = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
@@ -28,16 +26,18 @@ const ProductPage: FC = () => {
   const {selectedSizes} = useSelector ((state: RootState) => state.sizeSelect)
 
   const fetchData = async () => {
-    const product: Product = await getProduct(id);
-    setTitlePage(product.name);
-    setAllProducts(product.colors);
-    const sizeLabelPromises: Promise<number[][]> = Promise.all(
-      product.colors.map(async (color: { sizes: number[] }) => {
-        return color.sizes;
-      })
-    );
-    const resolvedSizeLabels = await sizeLabelPromises;
-    setSizeLabels(resolvedSizeLabels);
+    if(id !== undefined) {
+      const product: Product = await getProduct(parseInt(id.toString()));
+      setTitlePage(product.name);
+      setAllProducts(product.colors);
+      const sizeLabelPromises: Promise<number[][]> = Promise.all(
+        product.colors.map(async (color: { sizes: number[] }) => {
+          return color.sizes;
+        })
+      );
+      const resolvedSizeLabels = await sizeLabelPromises;
+      setSizeLabels(resolvedSizeLabels);
+    }
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ProductPage: FC = () => {
     }
   };
 
-  const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: number, selectedSize: string) => {
+  const handleAddFavorite = (nameProduct: string, colorName: string, photo: string, price: string, selectedSize: string) => {
     dispatch(addToCart({ colorName, sizeName: selectedSize, photo, price, nameProduct }));
 
   };

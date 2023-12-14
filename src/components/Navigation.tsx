@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartItem, addToCart } from "../store/cart.slice";
+import { CartItem } from "../store/cart.slice";
 import { RootState } from "../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Navigation:FC = () => {
 

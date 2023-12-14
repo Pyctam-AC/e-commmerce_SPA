@@ -9,7 +9,7 @@ interface SizeListProps {
 
   sizes: number[];
 
-  colorId: string;
+  colorId: number;
 }
 
 const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
@@ -37,7 +37,7 @@ const SizeList: FC<SizeListProps> = ({ sizes, colorId}) => {
   const handleAddToCart = (sizeLabel: string) => {
     if (selectedSize === sizeLabel) {
       setSelectedSize(null);
-      dispatch(notSelect(colorId));
+      dispatch(notSelect(colorId.toString()));
     } else {
       setSelectedSize(sizeLabel);
       dispatch(isSelect({ cardId: colorId.toString(), sizeName: sizeLabel }));

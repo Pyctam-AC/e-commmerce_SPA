@@ -1,5 +1,3 @@
-declare module "./api" {
-
   type Size = {
     id: number;
     label: string;
@@ -39,4 +37,4 @@ declare module "./api" {
   function getProductColor(productID: number, colorID: number): Promise<Color>;
 
   export { Size, Color, Product, getSizes, getSize, getProducts, getProduct, getProductColor };
-}
+

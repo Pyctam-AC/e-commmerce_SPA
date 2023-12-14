@@ -5,7 +5,7 @@ interface CartItem {
   colorName: string;
   sizeName: string;
   photo: string;
-  price: number;
+  price: string;
 }
 
 interface CartState {

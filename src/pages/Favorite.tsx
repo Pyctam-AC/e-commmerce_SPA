@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from "../store";
+import { useDispatch } from 'react-redux';
 import { removeFromCart } from "../store/cart.slice";
 import { CartItem } from "../store/cart.slice";
 import Navigation from "../components/Navigation";
