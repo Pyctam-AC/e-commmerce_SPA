@@ -48,5 +48,5 @@ npm run dev
 http://localhost:5173/
 ```
 
- открыть приложение можно по [ссылке](http://Pyctam-AC.github.io/e-commmerce-spa)
+ открыть приложение можно по [ссылке](http://Pyctam-AC.github.io/e-commmerce_SPA)
 
