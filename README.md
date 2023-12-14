@@ -28,7 +28,7 @@
 
 ---
 ссылка репозитория на GitHub
-https://pyctam-ac.github.io/e-commmerce_SPA/
+https://github.com/Pyctam-AC/e-commmerce_SPA.git
 
 ---
 установка всех зависимостей
@@ -50,3 +50,4 @@ http://localhost:5173/
 
  открыть приложение можно по [ссылке](http://Pyctam-AC.github.io/e-commmerce_SPA)
 
+<img align="left" src="./assets/worcked_page.gif" width="320" alt="tapping on the keyboard"/>
