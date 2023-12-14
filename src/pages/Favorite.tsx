@@ -2,9 +2,6 @@ import { FC, useEffect, useState } from "react"
 import { useDispatch } from 'react-redux';
 import { removeFromCart, addCount } from "../store/cart.slice";
 import { CartItem } from "../store/cart.slice";
-import Navigation from "../components/Navigation";
-
-
 
 const Favorite:FC = () => {
 

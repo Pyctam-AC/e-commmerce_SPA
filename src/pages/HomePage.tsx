@@ -1,9 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { getProducts, Product } from '../utils/api';
-
 import { Link } from "react-router-dom";
-import Navigation from "../components/Navigation";
-
 
 
 const HomePage: FC = () => {

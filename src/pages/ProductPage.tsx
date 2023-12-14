@@ -9,7 +9,6 @@ import Popup from "../components/Popup";
 import { RootState } from "../store";
 import { addToCart, addCount } from '../store/cart.slice';
 import { notSelect } from "../store/sizeSelect.slice";
-import Navigation from "../components/Navigation";
 
 const ProductPage: FC = () => {
   const dispatch = useDispatch();
