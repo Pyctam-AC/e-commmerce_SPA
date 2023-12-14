@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { EventHandler, FC, SyntheticEvent, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,7 +43,7 @@ const ProductPage: FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const handleOpenPopup: EventHandler<SyntheticEvent<HTMLImageElement>> = (event) => {
     const target = event.currentTarget;
